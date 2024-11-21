@@ -2,9 +2,7 @@
 <html lang="en" class="light scroll-smooth" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <title>
-      M-Space  - Real Estate
-    </title>
+    <title>M-Space - Real Estate</title>
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -42,7 +40,6 @@
       type="text/css"
     />
     <link rel="stylesheet" href="assets/css/tailwind.min.css" />
-    
   </head>
 
   <body class="dark:bg-slate-900">
@@ -344,11 +341,11 @@
                 Control.
               </h4>
               <p class="text-slate-400 max-w-xl">
-                M-Space developed a platform for the Real Estate marketplace that
-                allows buyers and sellers to easily execute a transaction on
-                their own. The platform drives efficiency, cost transparency and
-                control into the hands of the consumers. M-Space is Real Estate
-                Redefined.
+                M-Space developed a platform for the Real Estate marketplace
+                that allows buyers and sellers to easily execute a transaction
+                on their own. The platform drives efficiency, cost transparency
+                and control into the hands of the consumers. M-Space is Real
+                Estate Redefined.
               </p>
 
               <div class="mt-4">
@@ -481,22 +478,28 @@
         </div>
         <!--end grid-->
 
-        <div id="property-container" class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]"></div>
+        <div
+          id="property-container"
+          class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]"
+        ></div>
 
         <script>
           async function fetchProperties() {
             try {
-              const response = await fetch('http://localhost/m-space/backend/public/property.php');
+              const response = await fetch(
+                "http://localhost/m-space/backend/public/getProperty.php/"
+              );
               const properties = await response.json();
-        
-              const container = document.getElementById('property-container');
-              container.innerHTML = '';
-        
+
+              const container = document.getElementById("property-container");
+              container.innerHTML = "";
+
               properties.forEach((property) => {
+                const imageUrl = `http://localhost/m-space/backend/public/${property.images}`;
                 container.innerHTML += `
                   <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl overflow-hidden ease-in-out duration-500">
                     <div class="relative">
-                      <img src="${property.image}" alt="Property Image" />
+                      <img src="${imageUrl}" alt="Property Image" />
                       <div class="absolute top-4 end-4">
                         <a href="javascript:void(0)" class="btn btn-icon bg-white shadow rounded-full">
                           <i class="mdi mdi-heart text-[20px]"></i>
@@ -505,14 +508,14 @@
                     </div>
                     <div class="p-6">
                       <div class="pb-6">
-                        <a href="property-detail.html" class="text-lg hover:text-green-600 font-medium">
-                          ${property.address}
-                        </a>
+                        <a href="property-detail.html?id=${property.ID}" class="text-lg hover:text-green-600 font-medium">
+                           ${property.location}
+                            </a>
                       </div>
                       <ul class="py-6 border-y border-slate-100 flex items-center list-none">
                         <li class="flex items-center me-4">
                           <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                          <span>${property.area}sqf</span>
+                          <span>${property.squarefeet} sqft</span>
                         </li>
                         <li class="flex items-center me-4">
                           <i class="uil uil-bed-double text-2xl me-2 text-green-600"></i>
@@ -528,26 +531,20 @@
                           <span class="text-slate-400">Price</span>
                           <p class="text-lg font-medium">$${property.price}</p>
                         </li>
-                        <li>
-                          <span class="text-slate-400">Rating</span>
-                          <ul class="text-lg font-medium text-amber-400 list-none">
-                            ${Array(property.rating).fill('<li class="inline"><i class="mdi mdi-star"></i></li>').join('')}
-                          </ul>
-                        </li>
                       </ul>
                     </div>
                   </div>
                 `;
               });
             } catch (error) {
-              console.error('Error fetching properties:', error);
+              console.error("Error fetching properties:", error);
             }
           }
-        
+
           // Fetch properties on page load
-          document.addEventListener('DOMContentLoaded', fetchProperties);
+          document.addEventListener("DOMContentLoaded", fetchProperties);
         </script>
-        
+
         <!--en grid-->
       </div>
       <!--end container-->
@@ -611,9 +608,9 @@
               <div class="tiny-slide">
                 <div class="text-center">
                   <p class="text-xl text-slate-400 italic">
-                    " I highly recommend M-Space as the new way to sell your home
-                    "by owner". My home sold in 24 hours for the asking price.
-                    Best $400 you could spend to sell your home. "
+                    " I highly recommend M-Space as the new way to sell your
+                    home "by owner". My home sold in 24 hours for the asking
+                    price. Best $400 you could spend to sell your home. "
                   </p>
 
                   <div class="text-center mt-5">
@@ -798,7 +795,7 @@
               <div
                 class="relative -top-40 bg-white dark:bg-slate-900 lg:px-8 px-6 py-10 rounded-xl shadow-lg dark:shadow-gray-700 overflow-hidden"
               >
-                <div
+                <!-- <div
                   class="grid md:grid-cols-2 grid-cols-1 items-center gap-[30px]"
                 >
                   <div class="md:text-start text-center z-1">
@@ -828,9 +825,8 @@
                         Subscribe
                       </button>
                     </form>
-                    <!--end form-->
                   </div>
-                </div>
+                </div> -->
 
                 <div class="absolute -top-5 -start-5">
                   <div
@@ -989,7 +985,8 @@
                 <script>
                   document.write(new Date().getFullYear());
                 </script>
-                M-Space. 
+                M-Space.
+              </p>
             </div>
 
             <ul class="list-none md:text-end text-center">
